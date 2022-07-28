@@ -23,8 +23,8 @@ func main() {
 	fmt.Println()
 
 	if file != "" && host == "" {
-		zentao.BatchSqliScan(file)
+		zentao.batchSqliScan(file)
 	} else {
-		zentao.SqliScan(host, true)
+		zentao.sqliScan(host)
 	}
 }
