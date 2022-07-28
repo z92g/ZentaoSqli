@@ -7,8 +7,8 @@ Zentao v16.5 SQL注入漏洞 POC
 # 2.用法
 
 ```
-zentaoSqli -h 192.168.1.1 // 单个扫描
-zentaoSqli -f host.txt  // 批量扫描
+poc -h 192.168.1.1 // 单个扫描
+poc -f host.txt  // 批量扫描
 ```
 ![image](https://user-images.githubusercontent.com/108780847/180942328-6c4f0ed2-d431-4a5e-ac67-5163a3181081.png)
 
