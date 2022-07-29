@@ -63,8 +63,9 @@ func (z *Zentao) singleScan(ip string) {
 	}
 	if r0 {
 		color.FgGreen.Printf("[INFO]:[%s] Zentao v16.5 SQL Injection Existent\n", ip)
+	} else {
+		color.FgGray.Printf("[INFO]:[%s] Zentao v16.5 SQL Injection Non-Existent\n", ip)
 	}
-	color.FgGray.Printf("[INFO]:[%s] Zentao v16.5 SQL Injection Non-Existent\n", ip)
 
 }
 
