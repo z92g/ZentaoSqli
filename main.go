@@ -3,12 +3,13 @@ package main
 import (
 	"flag"
 	"fmt"
+	"github.com/gookit/color"
 )
 
-var host, file string
-
 func main() {
-	zentao := NewZentaoSQLI()
+	var host, file string
+
+	zentao := &Zentao{}
 
 	flag.StringVar(&host, "h", "", "ip")
 	flag.StringVar(&file, "f", "", "filepath")
@@ -19,12 +20,12 @@ func main() {
 (_   )( ___)( \( )(_  _)  /__\  (  _  )  / __)(  _  )(  )  (_  _)
  / /_  )__)  )  (   )(   /(__)\  )(_)(   \__ \ )(_)(  )(__  _)(_ 
 (____)(____)(_)\_) (__) (__)(__)(_____)  (___/(___/\\(____)(____)  by:Z92G`
-	fmt.Println(view)
+	color.Cyan.Println(view)
 	fmt.Println()
 
 	if file != "" && host == "" {
-		zentao.batchSqliScan(file)
+		zentao.batchScan(file)
 	} else {
-		zentao.sqliScan(host)
+		zentao.singleScan(host)
 	}
 }
