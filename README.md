@@ -10,7 +10,7 @@ Zentao v16.5 SQL注入漏洞 POC
 poc -h 192.168.1.1 // 单个扫描
 poc -f host.txt  // 批量扫描
 ```
-![image](https://user-images.githubusercontent.com/108780847/181902108-72303b69-f182-4792-bde8-e0d7f45b1208.png)
+![image](https://user-images.githubusercontent.com/108780847/181902798-49e3348e-8e3e-426a-bace-7505d5c5a9ca.png)
 
 # 3.免责声明
 
