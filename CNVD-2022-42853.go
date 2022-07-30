@@ -10,6 +10,7 @@ import (
 	"math/rand"
 	"net/url"
 	"os"
+	"path/filepath"
 	"strconv"
 	"strings"
 	"sync"
@@ -20,7 +21,15 @@ var wg sync.WaitGroup
 
 var stamp bool
 
+var absPath string
+
 type Zentao struct {
+}
+
+func init() {
+	files, _ := os.Executable()
+	path, _ := filepath.Split(files)
+	absPath = path + time.Now().Format("20060102150405") + ".log"
 }
 
 func (z *Zentao) r0(ip string, client *req.Client) (bool, error) {
@@ -35,7 +44,6 @@ func (z *Zentao) r0(ip string, client *req.Client) (bool, error) {
 		return true, nil
 	}
 	return false, nil
-
 }
 
 func (z *Zentao) payload(ip, payload string, client *req.Client) (*req.Response, error) {
@@ -62,9 +70,10 @@ func (z *Zentao) singleScan(ip string) {
 		return
 	}
 	if r0 {
-		color.FgGreen.Printf("[INFO]:[%s] Zentao v16.5 SQL Injection Existent\n", ip)
+		color.FgGreen.Printf("[INFO]:[%s] Zentao CNVD-2022-42853 Existent\n", ip)
+		z.scanLogs(ip)
 	} else {
-		color.FgGray.Printf("[INFO]:[%s] Zentao v16.5 SQL Injection Non-Existent\n", ip)
+		color.FgGray.Printf("[INFO]:[%s] Zentao CNVD-2022-42853 Non-existent\n", ip)
 	}
 
 }
@@ -79,6 +88,7 @@ func (z *Zentao) batchScan(path string) {
 		color.FgRed.Printf("[ERROR]:%v\n", err)
 		return
 	}
+	defer f.Close()
 
 	r := bufio.NewReader(f)
 
@@ -114,4 +124,15 @@ func (z *Zentao) randInt() string {
 	r2 := rand.Intn(100000)
 	sum := r1 + r2
 	return strconv.Itoa(sum)
+}
+
+func (z *Zentao) scanLogs(ip string) {
+	f, err := os.OpenFile(absPath, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	defer f.Close()
+
+	f.WriteString(fmt.Sprintf("[%s] [INFO]:[%s] Zentao CNVD-2022-42853 Existent\n", time.Now().Format("2006-01-02 15:04:05"), ip))
 }
