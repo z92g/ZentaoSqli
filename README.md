@@ -1,4 +1,4 @@
-# Zentao Sqli POC
+# Zentao Sqli CNVD-2022-42853
 
 # 1.简介
 
@@ -10,7 +10,7 @@ Zentao v16.5 SQL注入漏洞 POC
 poc -h 192.168.1.1 // 单个扫描
 poc -f host.txt  // 批量扫描
 ```
-![image](https://user-images.githubusercontent.com/108780847/181705696-c589bfb2-9a7b-4c8d-9728-6097bc3b90dd.png)
+![image](https://user-images.githubusercontent.com/108780847/181902108-72303b69-f182-4792-bde8-e0d7f45b1208.png)
 
 # 3.免责声明
 
